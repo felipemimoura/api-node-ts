@@ -2,8 +2,8 @@ const express = require("express")
 
 const app = express()
 
-app.get("/", function(request, response){
-  return response.send("Hello world")
+app.get("/project", function(request, response){
+  return response.json(["projeto 01", "projeto 02"])
 })
 
 app.listen(3000, function(){
