@@ -1,6 +1,7 @@
 const express = require("express")
 
 const app = express()
+app.use(express.json()) // Configurando o express para utilizar JSON
 
 app.get("/project", function(request, response){
   const query = request.query
@@ -9,6 +10,8 @@ app.get("/project", function(request, response){
 })
 
 app.post("/project", function(request, response)  {
+  const body = request.body
+  console.log(body)
   return response.json(["projeto 01", "projeto 02", "projeto 03"])
 })
 
