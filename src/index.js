@@ -13,6 +13,8 @@ app.post("/project", function(request, response)  {
 })
 
 app.put("/project/:id", function(request, response)  {
+  const params = request.params
+  console.log(params)
   return response.json(["projeto 04", "projeto 02", "projeto 03"])
 })
 app.delete("/project/:id", function(request, response)  {
