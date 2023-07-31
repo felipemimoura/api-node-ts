@@ -19,9 +19,29 @@ app.post("/project", function(request, response)  {
 })
 
 app.put("/project/:id", function(request, response)  {
-  const params = request.params
-  console.log(params)
-  return response.json(["projeto 04", "projeto 02", "projeto 03"])
+  // Pegando o valor recebido por parametro
+  const {id} = request.params
+  // Pegando as informações enviadas pelo body
+  const {name, owner} = request.body
+
+  // Buscando o index do projeto
+  const projectIndex = projects.findIndex(p => p.id === id)
+
+  // Validando se existe o id no Projeto
+  if(projectIndex < 0){
+    return response.status(404).json({message: "Projeto não encontrado"})
+  }
+
+  if(!name || !owner){
+    return response.status(400).json({message: "Name e owner são obrigatórios"})
+  }
+  const project = {
+    id, name, owner
+  }
+
+  projects[projectIndex] = project
+  
+  return response.json(project)
 })
 app.delete("/project/:id", function(request, response)  {
   return response.json([ "projeto 02", "projeto 03"])
