@@ -6,6 +6,15 @@ app.use(express.json()) // Configurando o express para utilizar JSON
 
 const projects = []
 
+function logRoutes(request, response, next) {
+  const {method, url} = request 
+  console.log('method', method)
+  console.log("url", url)
+  return next()
+}
+// Utilizando um middleware
+app.use(logRoutes)
+
 app.get("/project", function (request, response) {
   const query = request.query
   return response.json(projects)
